@@ -4,35 +4,51 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=gradient&customColorList=6,11,20&text=Anish%20Trivedi&fontSize=60&fontAlignY=38&desc=Building%20AI%20tooling%20that%20doesn%27t%20waste%20tokens&descSize=16&descAlignY=58&animation=fadeIn" width="100%"/>
 
 <p>
-  <a href="https://github.com/omanishay-cyber/datatree"><img src="https://img.shields.io/badge/🌳%20Currently%20building-datatree-4191E1?style=for-the-badge" alt="Building datatree"/></a>
-  <a href="https://github.com/omanishay-cyber"><img src="https://img.shields.io/badge/💬%20Issues-on%20GitHub-41E1B5?style=for-the-badge" alt="Email"/></a>
-  <img src="https://img.shields.io/badge/📍%20Based%20in-Plainfield%2C%20NJ-22D3EE?style=for-the-badge" alt="Location"/>
+  <a href="https://github.com/omanishay-cyber/mneme"><img src="https://img.shields.io/badge/Currently%20building-Mneme-4191E1?style=for-the-badge" alt="Building Mneme"/></a>
+  <a href="https://github.com/omanishay-cyber"><img src="https://img.shields.io/badge/Issues-on%20GitHub-41E1B5?style=for-the-badge" alt="Issues"/></a>
+  <img src="https://img.shields.io/badge/Based%20in-Plainfield%2C%20NJ-22D3EE?style=for-the-badge" alt="Location"/>
 </p>
 
 </div>
 
 ---
 
-## 🔭 Currently shipping
+## Currently shipping
 
-### 🌳 [datatree](https://github.com/omanishay-cyber/datatree) — the AI superbrain
+### [Mneme](https://github.com/omanishay-cyber/mneme) — the persistent memory layer for AI coding
 
-A persistent per-project memory MCP that makes **Claude never start cold and never lose its place**.
-Survives context compaction via a verification-gated Step Ledger. Works with Claude Code, Codex,
-Cursor, Windsurf and 14 more AI tools.
+A local-first MCP that makes **Claude never start cold and never lose its place**.
+Survives context compaction via a verification-gated Step Ledger. Works with Claude
+Code, Codex, Cursor, Windsurf, Zed, and 13 more AI tools.
 
 ```bash
-/plugin marketplace add github:omanishay-cyber/datatree
-/plugin install datatree
+# One-line installer (Linux / macOS)
+curl -fsSL https://raw.githubusercontent.com/omanishay-cyber/mneme/main/scripts/install.sh | sh
+
+# Windows (PowerShell)
+iwr -useb https://raw.githubusercontent.com/omanishay-cyber/mneme/main/scripts/install.ps1 | iex
+
+# Or as a Claude Code plugin
+/plugin marketplace add github:omanishay-cyber/mneme
+/plugin install mneme
 ```
 
-**~39 K LOC across Rust + TypeScript + Python. 27 SQLite storage layers. 33+ MCP tools. 14 visualisation views. 100% local — no cloud, no telemetry, no API keys.**
+<p>
+  <img src="https://img.shields.io/badge/version-v0.2.0-4191E1?style=flat-square" />
+  <img src="https://img.shields.io/badge/license-Apache--2.0-41E1B5?style=flat-square" />
+  <img src="https://img.shields.io/badge/platforms-Linux%20%7C%20macOS%20%7C%20Windows-22D3EE?style=flat-square" />
+  <img src="https://img.shields.io/badge/status-operational-brightgreen?style=flat-square" />
+</p>
 
-[Landing page ↗](https://omanishay-cyber.github.io/datatree/) • [Design doc ↗](https://github.com/omanishay-cyber/datatree/blob/main/docs/design/2026-04-23-datatree-design.md) • [Benchmarks ↗](https://github.com/omanishay-cyber/datatree#-benchmarks)
+**12-crate Rust workspace + Bun MCP server. 22 SQLite storage layers. 55+ MCP tools.
+14 visualisation views. Real BGE-small embeddings via fastembed-rs. 29 tree-sitter
+grammars. 100% local — no cloud, no telemetry, no API keys. Apache-2.0.**
+
+[Landing page ↗](https://omanishay-cyber.github.io/mneme/) • [Architecture ↗](https://github.com/omanishay-cyber/mneme/blob/main/ARCHITECTURE.md) • [Benchmarks ↗](https://github.com/omanishay-cyber/mneme/blob/main/benchmarks/BENCHMARKS.md)
 
 ---
 
-## 🛠️ Tech I ship with
+## Tech I ship with
 
 <table>
 <tr>
@@ -60,7 +76,7 @@ Cursor, Windsurf and 14 more AI tools.
 ### AI / Tooling
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-DE7356?style=flat)
 ![MCP](https://img.shields.io/badge/MCP-2024--11--05-success?style=flat)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![fastembed](https://img.shields.io/badge/fastembed--rs-orange?style=flat)
 ![ONNX](https://img.shields.io/badge/ONNX-005CED?style=flat&logo=onnx)
 
 </td>
@@ -69,20 +85,20 @@ Cursor, Windsurf and 14 more AI tools.
 
 ---
 
-## 🎯 What I focus on
+## What I focus on
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🧠 AI tooling that respects your tokens
+### AI tooling that respects your tokens
 Persistent memory, smart context injection, compaction-resilient workflows.
 If an AI tool asks you the same question twice, I'm already annoyed.
 
 </td>
 <td width="50%" valign="top">
 
-### 🏗️ Fault-tolerant multi-process systems
+### Fault-tolerant multi-process systems
 Supervisors, watchdogs, single-writer invariants, WAL logs, hourly snapshots.
 Building things that stay up — not just things that boot up.
 
@@ -91,14 +107,14 @@ Building things that stay up — not just things that boot up.
 <tr>
 <td width="50%" valign="top">
 
-### 🔒 100% local-first
+### 100% local-first
 No cloud dependencies, no telemetry, no "phone home" on startup.
 Your code stays on your machine. Full stop.
 
 </td>
 <td width="50%" valign="top">
 
-### 🎨 Premium desktop UX
+### Premium desktop UX
 Glassmorphism, Framer Motion animations, OKLCH theme engines,
 dark/light parity on every surface. Beauty matters.
 
@@ -108,7 +124,7 @@ dark/light parity on every surface. Beauty matters.
 
 ---
 
-## 📈 GitHub rhythm
+## GitHub rhythm
 
 <div align="center">
 
@@ -121,36 +137,43 @@ dark/light parity on every surface. Beauty matters.
 
 ---
 
-## 💭 Things I believe about software
+## Things I believe about software
 
 1. **Start from the user's pain, not from the tech stack.** Every feature should map to a pain statement you can finish in one sentence.
 2. **Local-first until you have a reason not to be.** Cloud is a liability, not a feature.
 3. **Compaction is an architecture problem, not a prompt problem.** Externalise the memory; don't rewrite the prompt.
 4. **Write the README before you write the code.** If you can't explain it clearly, it's not designed yet.
 5. **Ship small, ship often, ship what runs today.** A 40% complete system used by real people beats a 100% design that ships never.
+6. **Apache-2.0 or MIT or GTFO.** If your license blocks adoption, you don't have users — you have a monologue.
 
 ---
 
-## 📫 Let's connect
+## Let's connect
 
 <p align="center">
-  <a href="https://github.com/omanishay-cyber"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
   <a href="https://github.com/omanishay-cyber"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
   <a href="https://github.com/omanishay-cyber?tab=repositories"><img src="https://img.shields.io/badge/Repos-24292e?style=for-the-badge&logo=github&logoColor=white" alt="Repositories"/></a>
+  <a href="https://github.com/omanishay-cyber/mneme/discussions"><img src="https://img.shields.io/badge/Discussions-1f6feb?style=for-the-badge&logo=github&logoColor=white" alt="Discussions"/></a>
 </p>
 
 ---
 
 <div align="center">
 
-### 🌱 Open to
+### Open to
 
-**Collaborations** on local-first AI tooling • **Commercial licensing** of datatree •
+**Collaborations** on local-first AI tooling • **Design partners** for Mneme enterprise tier •
 **Conversations** about MCPs, Claude Code, or systems design
 
 <br/>
 
 <sub>Profile last refreshed 2026-04-23 • BS Computer Science • Based in Plainfield, NJ</sub>
+
+<br/>
+
+<em>"Memory is the engine of creativity." — the idea behind Mneme, named after the Greek muse of memory.</em>
+
+<br/>
 
 <img src="https://komarev.com/ghpvc/?username=omanishay-cyber&style=flat&color=4191E1&label=Profile+views" alt="Profile views"/>
 
