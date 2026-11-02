@@ -1,0 +1,287 @@
+<!doctype html>
+<!-- Source of the profile pictures. Each .art block is exported on its own by render.cjs, light and dark.
+     Detector waiver (skipped-heading): every block is its own image, never read as one page. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Profile art</title>
+<style>
+@font-face { font-family: "Arno"; src: url(../../temp/art/fonts/arno-light-display.woff2); font-weight: 300; font-style: normal; }
+@font-face { font-family: "Arno"; src: url(../../temp/art/fonts/arno-light-italic-display.woff2); font-weight: 300; font-style: italic; }
+@font-face { font-family: "Verlag"; src: url(../../temp/art/fonts/verlag-book.woff2); font-weight: 400; }
+@font-face { font-family: "Verlag"; src: url(../../temp/art/fonts/verlag-bold.woff2); font-weight: 700; }
+:root {
+  --color-button: #14213d; --color-button-edge: #f0c98a; --color-button-ink: #f7f1e4;
+  --color-ground: #080f1f; --color-ground-2: #101a31; --color-ink: #f3f6fb; --color-soft: #c6d0df;
+  --color-accent: #f0c98a; --color-line: rgb(255 255 255 / 0.16); --color-card: rgb(255 255 255 / 0.05);
+  --color-river-a: #dfe9f7; --color-river-b: #f0c98a; --color-scrim: 8 15 31; --color-shadow: rgb(0 0 0 / 0.55);
+}
+html.light {
+  --color-ground: #eef2f7; --color-ground-2: #e2e8f1; --color-ink: #0b1730; --color-soft: #33415a;
+  --color-accent: #7c4d0c; --color-line: rgb(11 23 48 / 0.16); --color-card: rgb(255 255 255 / 0.55);
+  --color-river-a: #27436f; --color-river-b: #a9721c; --color-scrim: 238 242 247; --color-shadow: rgb(25 40 70 / 0.28);
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { background: transparent; }
+body { font-family: "Verlag", sans-serif; color: var(--color-ink); }
+.art { position: relative; width: 1000px; overflow: hidden; isolation: isolate; margin-bottom: 40px; }
+.round { border-radius: 20px; background: var(--color-ground); }
+.paint { position: absolute; inset: 0; z-index: -2; background-size: cover; background-repeat: no-repeat; }
+.scrim { position: absolute; inset: 0; z-index: -1; }
+h1, h2, .serif { font-family: "Arno", serif; font-weight: 300; }
+em { font-style: italic; }
+.gold { color: var(--color-accent); }
+.label { font-weight: 700; font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent); }
+
+/* banner */
+#banner { height: 660px; padding: 58px 60px; }
+#banner h1 { font-size: 158px; line-height: 0.9; letter-spacing: -0.012em; margin-top: 22px; }
+#banner .role { font-size: 40px; line-height: 1.22; margin-top: 30px; color: var(--color-ink); }
+#banner .index { position: absolute; left: 60px; right: 60px; bottom: 44px; display: flex; gap: 46px; align-items: baseline;
+  font: 300 44px/1 "Arno", serif; border-top: 1px solid var(--color-line); padding-top: 22px; }
+#banner .index i { color: var(--color-accent); margin-right: 8px; }
+
+/* chapter bands: transparent, the river runs through them */
+.band { height: 210px; }
+.band svg { position: absolute; inset: 0; z-index: -1; }
+.band .t { position: absolute; left: 4px; bottom: 20px; font: 300 96px/1 "Arno", serif; letter-spacing: -0.008em; }
+.band .t i { color: var(--color-accent); margin-right: 18px; font-size: 76px; }
+.band .s { position: absolute; right: 4px; bottom: 34px; font-size: 34px; color: var(--color-soft); }
+
+/* number plates */
+.nums { display: grid; gap: 26px 20px; }
+.nums b { display: block; font: 300 104px/0.95 "Arno", serif; font-feature-settings: "lnum"; }
+.nums span { display: block; font-size: 33px; line-height: 1.12; margin-top: 8px; color: var(--color-ink); }
+#perchnums { padding: 52px 60px 50px; }
+#perchnums .nums { grid-template-columns: repeat(3, 1fr); column-gap: 44px; }
+
+/* mosaic of real Perch screens */
+#mosaic { padding: 28px; display: grid; grid-template-columns: 1.55fr 1fr; gap: 20px; }
+#mosaic figure { margin: 0; position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 34px -14px var(--color-shadow); }
+#mosaic img { display: block; width: 100%; }
+#mosaic .col { display: grid; gap: 20px; align-content: space-between; }
+#mosaic .cap { font: 300 42px/1.05 "Arno", serif; margin: 12px 4px 4px; }
+
+/* mneme */
+#mneme { height: 690px; padding: 56px 60px; }
+#mneme h2 { font-size: 136px; line-height: 0.92; letter-spacing: -0.01em; margin-top: 16px; }
+#mneme .tag { font: 300 italic 54px/1.1 "Arno", serif; margin-top: 18px; }
+#mneme .nums { position: absolute; left: 60px; right: 60px; bottom: 46px; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--color-line); padding-top: 22px; }
+#mneme .nums b { font-size: 92px; }
+#mneme svg { position: absolute; inset: 0; z-index: -1; }
+
+#mneask { padding: 56px 60px 44px; }
+#mneask h2 { font-size: 68px; line-height: 1.02; margin-bottom: 26px; }
+#mneask .row { display: grid; grid-template-columns: 270px 1fr; align-items: baseline; border-top: 1px solid var(--color-line); padding: 15px 0 17px; }
+#mneask .row code { font: 700 28px/1.1 "Verlag", sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+#mneask .row span { font: 300 48px/1.05 "Arno", serif; }
+
+#mnecold { height: 560px; padding: 56px 60px; }
+#mnecold h2 { font-size: 72px; line-height: 1.02; }
+#mnecold svg { position: absolute; inset: 0; z-index: -1; }
+#mnecold .stops { position: absolute; left: 60px; right: 60px; top: 330px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+#mnecold .stops b { display: block; font: 300 44px/1.04 "Arno", serif; margin-bottom: 8px; }
+#mnecold .stops span { font-size: 31px; line-height: 1.18; display: block; color: var(--color-soft); }
+
+.paint.sky { background-size: 180%; background-position: 40% top; }
+.light .paint.sky { background-size: 220%; background-position: 20% top; }
+.paint.cover { background-position: right center; }
+.light .paint.cover { background-size: 150%; background-position: left bottom; }
+.scrim.foot { background: linear-gradient(0deg, rgb(var(--color-scrim) / 0.92) 0%, rgb(var(--color-scrim) / 0.86) 26%, transparent 42%); }
+
+/* crafts */
+#craft { padding: 54px 60px 34px; }
+#craft h2 { font-size: 82px; line-height: 1; margin-bottom: 28px; }
+#craft .row { border-top: 1px solid var(--color-line); padding: 18px 0 20px; }
+#craft .row b { display: block; font: 300 54px/1.05 "Arno", serif; }
+#craft .row span { display: block; font-size: 33px; line-height: 1.2; color: var(--color-soft); margin-top: 6px; }
+
+/* closing */
+#closing { height: 560px; padding: 62px 60px; }
+#closing h2 { font-size: 118px; line-height: 0.96; letter-spacing: -0.01em; }
+#closing p { font-size: 40px; line-height: 1.2; margin-top: 26px; max-width: 16em; }
+
+/* buttons: one picture for both themes */
+.btn { width: 520px; height: 104px; border-radius: 52px; background: var(--color-button); border: 2px solid var(--color-button-edge); color: var(--color-button-ink);
+  display: flex; align-items: center; justify-content: center; gap: 16px; font-weight: 700; font-size: 37px; letter-spacing: 0.005em; margin-bottom: 40px; }
+.btn svg { width: 36px; height: 36px; }
+</style>
+</head>
+<body>
+
+<section class="art round" id="banner">
+  <div class="paint" data-paint="banner" style="background-position:right center"></div>
+  <div class="scrim" data-scrim="90deg:.86,.5,0"></div>
+  <div class="label">New Jersey</div>
+  <h1>Anish<br><em>Trivedi</em></h1>
+  <p class="role">DevOps and AI developer.<br>Graphic designer.</p>
+  <div class="index"><span><i>I</i>Perch</span><span><i>II</i>Stryx Skills</span><span><i>III</i>Mneme Genesis</span></div>
+</section>
+
+<section class="art band" id="ch1"><svg data-river="0"></svg><div class="t"><i>I</i>Perch</div><div class="s">A new shell for Windows</div></section>
+<section class="art band" id="ch2"><svg data-river="1"></svg><div class="t"><i>II</i>Stryx Skills</div><div class="s">A lab for Claude Code</div></section>
+<section class="art band" id="ch3"><svg data-river="2"></svg><div class="t"><i>III</i>Mneme Genesis</div><div class="s">Memory for AI coding</div></section>
+<section class="art band" id="ch4"><svg data-river="3"></svg><div class="t"><i>IV</i>The workshop</div><div class="s">What I do, with what</div></section>
+<section class="art band" id="ch5"><svg data-river="4"></svg><div class="t"><i>V</i>Your turn</div><div class="s">Try one tonight</div></section>
+
+<section class="art round" id="perchnums">
+  <div class="paint" data-paint-dark="plate-dusk.webp" data-paint-light="plate-dawn.webp" style="background-position:center 60%"></div>
+  <div class="scrim" data-scrim="0deg:.72,.72,.72"></div>
+  <div class="nums">
+    <div><b>12</b><span>notch designs</span></div>
+    <div><b>12</b><span>Start menu designs, 21 flavors</span></div>
+    <div><b>3</b><span>dock styles</span></div>
+    <div><b>10</b><span>colour palettes</span></div>
+    <div><b>2</b><span>looks: Simple and Graphics</span></div>
+    <div><b>$0</b><span>at home or at work</span></div>
+  </div>
+</section>
+
+<section class="art round" id="mosaic">
+  <div class="col">
+    <figure><img src="../../temp/art/c-n-calendar.webp" alt=""></figure>
+    <p class="cap">A timer that <em>draws itself</em> round the notch.</p>
+    <figure><img src="../../temp/art/c-k-magnify.webp" alt=""></figure>
+    <p class="cap">Icons that <em>grow</em> under your pointer.</p>
+  </div>
+  <div class="col">
+    <figure><img src="../../temp/art/c-n-music.webp" alt=""></figure>
+    <p class="cap">Your song, at the top of the screen.</p>
+    <figure><img src="../../temp/art/c-f-calc.webp" alt=""></figure>
+    <p class="cap">Search that <em>does the sum.</em></p>
+    <figure><img src="../../temp/art/c-n-sound.webp" alt=""></figure>
+    <p class="cap">A volume for every app.</p>
+  </div>
+</section>
+
+<section class="art round" id="mneme">
+  <div class="paint cover" data-paint="memory"></div>
+  <div class="scrim" data-scrim="90deg:.8,.35,0"></div>
+  <div class="scrim foot"></div>
+  <svg id="constellation" viewBox="0 0 1000 690"></svg>
+  <div class="label">Mneme</div>
+  <h2>Mneme<br><em>Genesis</em></h2>
+  <p class="tag">Where the memory begins.</p>
+  <div class="nums">
+    <div><b>49</b><span>tools</span></div>
+    <div><b>11</b><span>scanners</span></div>
+    <div><b>14</b><span>WebGL views</span></div>
+    <div><b>100%</b><span>local</span></div>
+  </div>
+</section>
+
+<section class="art round" id="mneask">
+  <div class="paint sky" data-paint="memory" style="opacity:.42"></div>
+  <h2>Ask it what you would<br><em>ask a colleague.</em></h2>
+  <div class="row"><code>Recall</code><span>Where is the auth handler?</span></div>
+  <div class="row"><code>Blast radius</code><span>What breaks if I change this?</span></div>
+  <div class="row"><code>Call graph</code><span>Who calls it?</span></div>
+  <div class="row"><code>Decision</code><span>Why did we build it this way?</span></div>
+  <div class="row"><code>Constraint</code><span>What must stay true?</span></div>
+  <div class="row"><code>To-do</code><span>What is left to do?</span></div>
+</section>
+
+<section class="art round" id="mnecold">
+  <div class="paint sky" data-paint="memory" style="opacity:.5"></div>
+  <svg id="coldline" viewBox="0 0 1000 560"></svg>
+  <h2>A new chat does not<br><em>start cold.</em></h2>
+  <div class="stops">
+    <div><b>You work</b><span>It keeps a graph of your code, current as you save.</span></div>
+    <div><b>The chat compacts</b><span>The details stay in a store on your disk.</span></div>
+    <div><b>The next chat</b><span>It picks up where the last one ended.</span></div>
+  </div>
+</section>
+
+<section class="art round" id="craft">
+  <div class="paint" data-paint-dark="plate-night.webp" data-paint-light="plate-dawn.webp" style="background-position:center bottom;opacity:.2"></div>
+  <h2>The <em>workbench.</em></h2>
+  <div class="row"><b>Systems and DevOps</b><span>Rust, Tokio, SQLite, tree-sitter. Supervisors, watchdogs, signed updates, release pipelines on GitHub Actions.</span></div>
+  <div class="row"><b>Desktop and web</b><span>TypeScript, React, Svelte, Electron, Tauri, Bun.</span></div>
+  <div class="row"><b>AI tooling</b><span>MCP, Claude Code, ONNX, fastembed. Ollama, LM Studio and ComfyUI on my own GPU.</span></div>
+  <div class="row"><b>Graphic design</b><span>Type, colour in OKLCH, icons, motion. Every picture on this page.</span></div>
+</section>
+
+<section class="art round" id="closing">
+  <div class="paint" data-paint-dark="plate-perch.webp" data-paint="banner-light-only" style="background-position:right center"></div>
+  <div class="scrim" data-scrim="90deg:.92,.5,0"></div>
+  <h2>All three<br><em>are free.</em></h2>
+  <p>Pick one and try it tonight.</p>
+</section>
+
+<div class="art btn" id="btn-perch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6.5 10l5.5 5.5 5.5-5.5M4 21h16"/></svg>Download Perch</div>
+<div class="art btn" id="btn-stryx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l6 6-6 6M12 19h8"/></svg>Get Stryx Skills</div>
+<div class="art btn" id="btn-mneme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l6 6-6 6M12 19h8"/></svg>Install Mneme</div>
+
+<script>
+const theme = new URLSearchParams(location.search).get('theme') || 'dark';
+document.documentElement.classList.toggle('light', theme === 'light');
+const css = getComputedStyle(document.documentElement);
+const tok = (n) => css.getPropertyValue(n).trim();
+
+// paintings: one per theme
+document.querySelectorAll('.paint').forEach((p) => {
+  let src = theme === 'dark' ? p.dataset.paintDark : p.dataset.paintLight;
+  const base = p.dataset.paint;
+  if (!src && base === 'banner-light-only') src = 'banner-light.png';
+  if (!src && base) src = `${base}-${theme}.png`;
+  p.style.backgroundImage = `url(../../temp/art/${src})`;
+});
+// scrims: "angle:a,b,c" stops in the ground colour
+document.querySelectorAll('.scrim[data-scrim]').forEach((s) => {
+  const [ang, st] = s.dataset.scrim.split(':');
+  const [a, b, c] = st.split(',').map(Number);
+  const rgb = tok('--color-scrim');
+  s.style.background = `linear-gradient(${ang}, rgb(${rgb} / ${a}) 0%, rgb(${rgb} / ${b}) 52%, rgb(${rgb} / ${c}) 100%)`;
+});
+
+// the river: the same bundle of strands through every chapter band; a band's right edge meets the next band's left edge
+function strand(phase, k, W, H, mid, amp) {
+  let d = '';
+  for (let x = 0; x <= W; x += 10) {
+    const t = (x / W + phase) * 0.5;
+    const y = mid + amp * Math.sin(t * Math.PI * 2) + (3 + k * 1.2) * Math.sin(t * Math.PI * 2 * 2 + k * 0.5) + (k - 7) * 2;
+    d += (x ? 'L' : 'M') + x + ' ' + y.toFixed(1);
+  }
+  return d;
+}
+document.querySelectorAll('[data-river]').forEach((svg) => {
+  const W = 1000, H = 210; const ph = Number(svg.dataset.river);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const id = 'g' + ph;
+  let out = `<defs><linearGradient id="${id}"><stop offset="0" stop-color="${tok('--color-river-a')}"/><stop offset=".55" stop-color="${tok('--color-river-b')}"/><stop offset="1" stop-color="${tok('--color-river-a')}"/></linearGradient><filter id="b${id}" x="-5%" y="-40%" width="110%" height="180%"><feGaussianBlur stdDeviation="5"/></filter></defs>`;
+  let lines = '';
+  for (let k = 0; k < 15; k++) {
+    const o = 0.14 + 0.5 * Math.pow(1 - Math.abs(k - 7) / 7, 1.6);
+    lines += `<path d="${strand(ph, k, W, H, 50, 14)}" fill="none" stroke="url(#${id})" stroke-width="${k === 7 ? 1.8 : 1}" stroke-opacity="${o.toFixed(2)}"/>`;
+  }
+  out += `<g filter="url(#b${id})" opacity=".5">${lines}</g>${lines}`;
+  svg.innerHTML = out;
+});
+
+// a recall path lit among the star trails
+(function () {
+  const pts = [[560, 150], [650, 92], [742, 168], [705, 268], [842, 232], [902, 118]];
+  const links = [[0, 1], [1, 2], [2, 3], [2, 4], [4, 5]];
+  const ink = tok('--color-accent'), soft = tok('--color-river-a');
+  let s = '';
+  links.forEach(([a, b]) => { s += `<line x1="${pts[a][0]}" y1="${pts[a][1]}" x2="${pts[b][0]}" y2="${pts[b][1]}" stroke="${ink}" stroke-width="1.6" stroke-opacity=".85"/>`; });
+  pts.forEach(([x, y], i) => { s += `<circle cx="${x}" cy="${y}" r="16" fill="${ink}" opacity=".16"/><circle cx="${x}" cy="${y}" r="${i === 2 ? 7 : 4.5}" fill="${i === 2 ? ink : soft}"/>`; });
+  document.getElementById('constellation').innerHTML = s;
+})();
+
+// the line that keeps going through a compaction
+(function () {
+  const a = tok('--color-river-a'), b = tok('--color-river-b');
+  let s = `<defs><linearGradient id="cl"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>`;
+  const y = 292;
+  for (let k = 0; k < 9; k++) {
+    const o = 0.2 + 0.6 * (1 - Math.abs(k - 4) / 4);
+    const sp = (k - 4) * 3.2;
+    s += `<path d="M60 ${y + sp} C 300 ${y + sp} 340 ${y + sp * 2.4} 500 ${y + sp * 0.3} S 720 ${y + sp} 940 ${y + sp}" fill="none" stroke="url(#cl)" stroke-opacity="${o}" stroke-width="1.2"/>`;
+  }
+  [60, 374, 688].forEach((x) => { s += `<circle cx="${x}" cy="${y}" r="9" fill="${b}"/>`; });
+  document.getElementById('coldline').innerHTML = s;
+})();
+</script>
+</body>
+</html>
